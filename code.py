@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[16]:
+
 
 
 # data manipulate 
@@ -17,27 +17,27 @@ from ipywidgets import interact
 
 # pandas (all lowercase) is a popular Python-based data analysis toolkit which can be imported using import pandas as pd . It presents a diverse range of utilities, ranging from parsing multiple file formats to converting an entire data table into a NumPy matrix array
 
-# In[17]:
+
 
 
 #lets read the dataset
 data = pd.read_csv("data.csv")
 
 
-# In[18]:
+
 
 
 # lets cheak teh shape of the dataset
 print("shape of the datset:" ,   data.shape)
 
 
-# In[19]:
+
 
 
 data.head() #head 5 
 
 
-# In[20]:
+
 
 
 data.tail() #last 5 
@@ -45,7 +45,6 @@ data.tail() #last 5
 
 # #Pandas isnull() and notnull() methods are used to check and manage NULL values in a data frame.
 
-# In[21]:
 
 
 # let find missing value 
@@ -59,37 +58,36 @@ data.isnull().sum()
 # - klib.dist_plot(df) # returns a distribution plot for every numeric feature
 # - klib.missingval_plot(df) # returns a figure containing information about missing values
 
-# In[22]:
+
 
 
 klib.cat_plot(data) # returns a visualization of the number and frequency of categorical features
 
 
-# In[23]:
+
 
 
 klib.corr_mat(data) # returns a color-encoded correlation matrix
 
 
-# In[24]:
+
 
 
 klib.corr_plot(data) # returns a color-encoded heatmap, ideal for correlations
 
 
-# In[25]:
+
 
 
 klib.dist_plot(data) # returns a distribution plot for every numeric feature
 
 
-# In[26]:
 
 
 klib.missingval_plot(data)# returns a figure containing information about missing values
 
 
-# In[27]:
+
 
 
 #let cheak the crops present in this dataset 
@@ -102,7 +100,7 @@ data["label"].value_counts()
 # 
 # The format() method returns the formatted string.
 
-# In[28]:
+
 
 
 # lets check the summary for all the crops 
@@ -123,7 +121,7 @@ print('==> Avg RailFall in nm :{0:.2f}'.format(data["rainfall"].mean()))
 #          Outlier Analysis is a data mining task which is referred to as an “outlier mining”
 # mode  = in the data set in have categorical value(age , time etc) then replace the missing value helping through mean
 
-# In[29]:
+
 
 
 #let cheak the summary statistics of the crops 
@@ -176,7 +174,7 @@ def summary (crops = list(data["label"].value_counts().index)):
     
 
 
-# In[30]:
+
 
 
 #lets compere the avg requirement for each each avgrage conditions
@@ -215,7 +213,7 @@ def compare (conditions = ["N" , "P" , "K" , "temperature" , "humidity" , "ph" ,
     
 
 
-# In[31]:
+
 
 
 #let make this function more intvitive :==>
@@ -232,14 +230,14 @@ def compare (conditions = ["N" , "P" , "K" , "temperature" , "humidity" , "ph" ,
     
 
 
-# In[32]:
+
 
 
 #seabron  #displot distribution plot function ?
 ##	Nitrogen	phosphorous	---potassium	temperature	humidity	ph	rainfall
 
 
-# In[33]:
+
 
 
 plt.subplot(2, 4, 1)
@@ -285,7 +283,7 @@ plt.suptitle("distribution Agricultural conditions" , fontsize=20)
 plt.show()
 
 
-# In[34]:
+
 
 
 #lets find out some interestings facts
@@ -304,7 +302,7 @@ print("crops which requires very low ph:", data[data["ph"]<4]["label"].unique())
 print("crops which requires very high ph:", data[data["ph"]>9]["label"].unique())
 
 
-# In[35]:
+
 
 
 ##  lets understand which crops can only be grown in summer  , winter , Rainy 
@@ -319,14 +317,13 @@ print("======================Rainy crops======================")
 print(data[(data["rainfall"]>200) & (data["humidity"]>30)]["label"].unique())
 
 
-# In[36]:
+
 
 
 #clustering analysis +> used to classi      data point into realvite groups 
 #that mean we assing samely data aasing one group
 
 
-# In[37]:
 
 
 from sklearn.cluster import KMeans
@@ -346,14 +343,14 @@ print(x.shape)
 # Image result for elbow method k means
 # The elbow method runs k-means clustering on the dataset for a range of values for k (say from 1-10) and then for each value of k computes an average score for all clusters. By default, the distortion score is computed, the sum of square distances from each point to its assigned center.
 
-# In[38]:
+
 
 
 #In clustering analysis 1th we knows how many cluster we have
 #so knowing cluster help elbow method
 
 
-# In[39]:
+
 
 
 # lets determine the optimun number of clusters within dataset 
@@ -371,7 +368,7 @@ plt.ylabel("wcss")
 plt.show()
 
 
-# In[40]:
+:
 
 
 # lets implement the k means algorithm to perfron clustering analysis
@@ -385,7 +382,6 @@ z = pd.concat([y_means,a],axis= 1)
 z = z.rename(columns = {0:"cluster"})
 
 
-# In[41]:
 
 
 #lets cheak the clusters of each crops
@@ -409,13 +405,12 @@ print("Crops in frist cluster:" ,z[z["cluster"]==3]["label"].unique())
 # #how knows prediction  are true ?
 # #used evaluation matrix
 
-# In[42]:
 
 
 #machine learning mobel used  ==> logical reasoning
 
 
-# In[43]:
+
 
 
 # lets split tge adtaset for predictive modeling 
@@ -426,7 +421,7 @@ print("shape of x:",x.shape)
 print("shape of y:",y.shape)
 
 
-# In[44]:
+
 
 
 from sklearn.model_selection import train_test_split
@@ -437,7 +432,7 @@ print("the shape y train:",y_train.shape)
 print("the shape y train:",y_test.shape)
 
 
-# In[45]:
+
 
 
 # lets created a predicitive model
@@ -452,7 +447,7 @@ y_pred = model.predict(x_test)
 
 
 
-# In[46]:
+
 
 
 # letts evalute tge model performace 
@@ -465,7 +460,7 @@ sas.heatmap(cm , annot = True , cmap = "Wistia" )
 plt.title("confusion maxrtix for logistic regression" , fontsize = 15)
 
 
-# In[47]:
+
 
 
 # letts print the classifixcation report also
@@ -474,20 +469,20 @@ cr = classification_report(y_test, y_pred)
 print(cr)
 
 
-# In[48]:
+
 
 
 data.head()
 
 
-# In[49]:
+
 
 
 predicition = model.predict((np.array([[90,40,40,20,80,7,200]])))
 print("the suggested crop for given climatic condition id :", predicition)
 
 
-# In[ ]:
+
 
 
 
